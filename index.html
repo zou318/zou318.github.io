@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>青少年脊柱侧弯康复 | 小红书传播与用户需求分析</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Noto Sans', system-ui, -apple-system, 'Helvetica Neue', sans-serif;
+            background-color: #f8fbf6;
+            color: #1d3b2a;
+            line-height: 1.5;
+        }
+
+        :root {
+            --primary-green: #2b6e3c;
+            --card-white: #ffffff;
+            --shadow-sm: 0 8px 20px rgba(0, 32, 0, 0.05);
+            --border-radius: 20px;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 2rem 1.5rem;
+        }
+
+        /* 头部 */
+        .hero {
+            text-align: center;
+            padding: 2rem 1rem 1.5rem;
+            background: linear-gradient(135deg, #f1fae9 0%, #ffffff 100%);
+            border-radius: var(--border-radius);
+            margin-bottom: 2rem;
+            border-bottom: 3px solid var(--primary-green);
+        }
+        .hero h1 {
+            font-size: 1.9rem;
+            font-weight: 700;
+            color: #1a4d2a;
+            margin-bottom: 0.75rem;
+        }
+        .hero .sub {
+            font-size: 1.1rem;
+            color: #537a45;
+            border-top: 1px solid #d4e2ca;
+            display: inline-block;
+            padding-top: 0.75rem;
+        }
+
+        /* 通用卡片 */
+        .card {
+            background: var(--card-white);
+            border-radius: 24px;
+            padding: 1.6rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #e2eedb;
+        }
+        .section-title {
+            font-size: 1.7rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+            padding-left: 0.6rem;
+            border-left: 6px solid var(--primary-green);
+            color: #254e30;
+        }
+
+        /* 项目概述内部 */
+        .overview-text {
+            font-size: 1rem;
+            line-height: 1.65;
+            color: #2d4a33;
+        }
+        .overview-block {
+            margin-bottom: 1rem;
+        }
+        .overview-block strong {
+            color: #1f6332;
+            font-weight: 700;
+            display: inline-block;
+            min-width: 5rem;
+        }
+
+        /* 团队成员网格 */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.8rem;
+            margin-top: 0.5rem;
+        }
+        .member-card {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 1.5rem 1rem;
+            text-align: center;
+            transition: transform 0.2s;
+            border: 1px solid #deecce;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.02);
+        }
+        .member-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(43, 110, 60, 0.08);
+            border-color: #bdd8aa;
+        }
+        .member-avatar {
+            width: 70px;
+            height: 70px;
+            background: #e1f0da;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: var(--primary-green);
+        }
+        .member-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1b4b2a;
+            margin-bottom: 0.3rem;
+        }
+        .member-major, .member-role {
+            font-size: 0.9rem;
+            margin: 0.3rem 0;
+        }
+        .member-role {
+            color: #5b7c4a;
+            background: #f4f9ef;
+            display: inline-block;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        /* 核心技术展示 */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 1.2rem 0 0.5rem;
+        }
+        .tech-item {
+            background: #fbfef8;
+            padding: 1.2rem 0.8rem;
+            text-align: center;
+            border-radius: 28px;
+            border: 1px solid #ddecd2;
+        }
+        .tech-icon {
+            font-size: 2.2rem;
+            margin-bottom: 0.75rem;
+        }
+        .tech-title {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 0.4rem;
+            color: #1f5a31;
+        }
+        .tech-desc {
+            font-size: 0.85rem;
+            color: #5b7550;
+        }
+
+        /* 成果展示区 - 图片高度一致的核心样式 */
+        .results-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 1.2rem 0 1.5rem;
+        }
+        .result-card {
+            flex: 1;
+            min-width: 240px;
+            background: #ffffff;
+            border-radius: 26px;
+            padding: 1.2rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #e7f0e0;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+        /* 关键：固定图片容器高度，内部图片自适应居中，保证两个卡片图片区域严格等高 */
+        .result-img {
+            width: 100%;
+            height: 220px;           /* 固定高度 */
+            background: #ecf6e5;
+            border-radius: 20px;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #cbdcc0;
+            overflow: hidden;
+        }
+        .result-img img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            border-radius: 12px;
+        }
+        .result-caption {
+            font-weight: 600;
+            margin-top: 0.75rem;
+            color: #2c5a37;
+        }
+        .reminder-note {
+            font-size: 0.7rem;
+            color: #8bae7a;
+            margin-top: 5px;
+        }
+
+        /* 超链接 */
+        .link-area {
+            text-align: center;
+            margin: 1.8rem 0 1rem;
+        }
+        .btn-finebi {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--primary-green);
+            color: white;
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: 0.2s;
+        }
+        .btn-finebi:hover {
+            background-color: #1b5430;
+            transform: translateY(-2px);
+        }
+        .finebi-note {
+            font-size: 0.8rem;
+            margin-top: 0.6rem;
+            color: #6f8f62;
+        }
+
+        /* 页脚 */
+        .footer {
+            margin-top: 2.5rem;
+            text-align: center;
+            padding: 1.8rem 0.5rem;
+            border-top: 1px solid #d4e6c8;
+            color: #4f7343;
+            background-color: #fafff7;
+            border-radius: 30px 30px 0 0;
+        }
+
+        @media (max-width: 720px) {
+            .container {
+                padding: 1rem;
+            }
+            .hero h1 {
+                font-size: 1.5rem;
+            }
+            .section-title {
+                font-size: 1.4rem;
+            }
+            .card {
+                padding: 1.2rem;
+            }
+            .result-img {
+                height: 180px;  /* 手机端可适当降低高度，保持一致性 */
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="hero">
+        <h1>青少年脊柱侧弯康复小红书传播与用户需求分析</h1>
+        <div class="sub">上海体育大学 医技6班 计算机大作业 · 2026年度</div>
+    </div>
+
+    <!-- 项目概述 -->
+    <section>
+        <div class="section-title">📖 项目概述</div>
+        <div class="card overview-text">
+            <div class="overview-block">
+                <strong>📌 项目背景：</strong>我国超500万青少年患脊柱侧弯，已成继肥胖、近视后的第三大健康杀手。小红书成为家长和青少年获取康复知识的热门平台，但目前康复内容传播与用户真实需求之间存在明显信息差。亟需通过数据分析，明确用户需求，优化内容传播策略，提升科普精准度。
+            </div>
+            <div class="overview-block">
+                <strong>🎯 项目目标：</strong>通过八爪鱼RPA技术实现数据获取，利用Excel做数据清洗与整理，结合FineBI进行可视化分析，网页展示青少年脊柱侧弯康复内容小红书传播与用户需求分析主题的体育洞察。
+            </div>
+            <div class="overview-block">
+                <strong>💡 项目意义：</strong>整合了医学技术类专业的知识，探索了AI工具在体育领域的实际应用。
+            </div>
+        </div>
+    </section>
+
+    <!-- 团队成员板块 —— 间隙已调小 (margin-top: 0.8rem) -->
+    <section style="margin-top: 0.8rem;">
+        <div class="section-title">👥 团队成员</div>
+        <div class="team-grid">
+            <div class="member-card">
+                <div class="member-avatar">📊</div>
+                <div class="member-name">焦雪茹</div>
+                <div class="member-major"><strong>专业：</strong>医学技术类</div>
+                <div class="member-role"><strong>分工：</strong>数据采集(RPA爬虫) & 小红书笔记抓取</div>
+            </div>
+            <div class="member-card">
+                <div class="member-avatar">📈</div>
+                <div class="member-name">张亭玉</div>
+                <div class="member-major"><strong>专业：</strong>医学技术类</div>
+                <div class="member-role"><strong>分工：</strong>Excel数据清洗 / 指标统计与分类整理</div>
+            </div>
+            <div class="member-card">
+                <div class="member-avatar">📉</div>
+                <div class="member-name">尤琪乐</div>
+                <div class="member-major"><strong>专业：</strong>医学技术类</div>
+                <div class="member-role"><strong>分工：</strong>FineBI可视化分析 & 仪表板制作</div>
+            </div>
+            <div class="member-card">
+                <div class="member-avatar">🌐</div>
+                <div class="member-name">邹钰佳</div>
+                <div class="member-major"><strong>专业：</strong>医学技术类</div>
+                <div class="member-role"><strong>分工：</strong>HTML网页制作 & 公开发布</div>
+            </div>
+        </div>
+        <p style="font-size:0.75rem; color:#7c9c6b; margin-top: 8px; text-align:center;">※ 上述成员姓名/专业/分工均可按需修改</p>
+    </section>
+
+    <!-- 核心技术展示 -->
+    <section style="margin-top: 1.8rem;">
+        <div class="section-title">⚙️ 核心技术栈</div>
+        <div class="tech-grid">
+            <div class="tech-item">
+                <div class="tech-icon">🕷️</div>
+                <div class="tech-title">爬虫数据采集</div>
+                <div class="tech-desc">基于八爪鱼RPA + Python辅助，实现小红书笔记自动抓取。</div>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon">📊</div>
+                <div class="tech-title">Excel数据处理</div>
+                <div class="tech-desc">数据清洗、分类汇总、统计分析，构建康复内容标签及热度指标。</div>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon">📈</div>
+                <div class="tech-title">FineBI可视化分析</div>
+                <div class="tech-desc">拖拽式大屏仪表板，挖掘用户需求与传播规律。</div>
+            </div>
+            <div class="tech-item">
+                <div class="tech-icon">🌿</div>
+                <div class="tech-title">HTML/CSS 网页制作</div>
+                <div class="tech-desc">响应式学术风格网页，整合成果展示及小组信息。</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 项目成果展示（两张截图高度完全一致） -->
+    <section style="margin-top: 1.8rem;">
+        <div class="section-title">📊 项目成果展示</div>
+        <div class="results-row">
+            <!-- 图片1：FineBI仪表板截图 -->
+            <div class="result-card">
+                <div class="result-img">
+                    <img src="C:\Users\21858\Desktop\finebi.png.png"
+                         alt="FineBI仪表盘截图" style="max-width:100%; max-height:100%;">
+                </div>
+                <div class="result-caption">✅ FineBI 可视化仪表板 · 用户需求 & 传播热度</div>
+                <div class="reminder-note">※ 替换图片: 修改上方 img 的 src 属性即可</div>
+            </div>
+            <!-- 图片2：Excel数据整理统计表截图 -->
+            <div class="result-card">
+                <div class="result-img">
+                    <img src="C:\Users\21858\Desktop\excel.png.png"
+                         alt="Excel统计表截图" style="max-width:100%; max-height:100%;">
+                </div>
+                <div class="result-caption">📋 Excel 数据清洗 · 分类统计表（用户标签、康复笔记热度）</div>
+                <div class="reminder-note">※ 替换图片: 修改上方 img 的 src 属性即可</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 超链接功能：FineBI公开仪表板 -->
+    <div class="link-area">
+        <a href="#" id="finebiDashboardLink" class="btn-finebi" target="_blank" rel="noopener noreferrer">
+            🔗 查看完整FineBI分析仪表盘
+        </a>
+        <div class="finebi-note">
+            ⚡ 超链接预留：请将下方占位链接替换为真实FineBI公开链接<br>
+            <span style="font-family: monospace; background:#eef1e9; padding:2px 6px; border-radius:12px; display:inline-block; margin-top:5px;">👉 当前链接: 待粘贴FineBI公开链接 👈</span>
+        </div>
+    </div>
+
+    <!-- 可选：数据分析洞察摘要 -->
+    <div style="margin-top: 1.5rem; background:#F7FCF2; border-radius: 24px; padding: 1.3rem 1.5rem;">
+        <h3 style="color: #2d693c; font-size: 1.2rem; margin-bottom: 0.6rem;">📝 数据分析洞察摘要</h3>
+        <p style="color: #446b37;">基于爬取的小红书“脊柱侧弯康复”相关笔记（样本量800+条），经Excel数据统计与FineBI可视化分析显示：通俗科普内容发布量更高，但深度专业内容的点赞、收藏、评论互动表现全面领先，单条最高评论量达1200条。用户核心关注胸椎/腰椎矫正、护具佩戴等方向，核心群体为青少年家长，专业内容供需存在缺口，后续可针对性优化科普方向。本项目整合医学技术与AI工具，为康复内容传播策略提供数据支撑。</p>
+    </div>
+
+    <!-- 页脚：版权+小组名 -->
+    <div class="footer">
+        <div>© 2026 医技6班 第3小组 计算机大作业成果展示 版权所有</div>
+        <div style="margin-top: 8px; font-size: 0.75rem;">青少年脊柱侧弯康复 · 小红书传播与用户需求分析 | 数据驱动康复内容优化</div>
+    </div>
+</div>
+
+<script>
+    (function() {
+        const linkBtn = document.getElementById('finebiDashboardLink');
+        // 请将下面的占位链接替换成您的 FineBI 公开仪表板实际地址
+        const yourFineBILink =" https://demo.fanruan.com/webroot/decision/link/cxt4";
+        if (yourFineBILink && yourFineBILink !== "#" && yourFineBILink !== "https://your-finebi-demo-link.com/dashboard/脊柱侧弯康复分析") {
+            linkBtn.href = yourFineBILink;
+        } else {
+            linkBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('📌 尚未配置FineBI仪表板公开链接。\n请在代码中找到 const yourFineBILink = \"...\" 这一行，将引号内的链接替换为您的实际FineBI仪表板URL。');
+            });
+        }
+        // 点击图片提示替换（方便使用）
+        const finebiImg = document.getElementById('finebi-img');
+        const excelImg = document.getElementById('excel-img');
+        if (finebiImg) {
+            finebiImg.style.cursor = 'pointer';
+            finebiImg.addEventListener('click', () => alert('替换此图片：将 src 属性改为您的 FineBI 仪表板截图路径（本地或网络URL）。'));
+        }
+        if (excelImg) {
+            excelImg.style.cursor = 'pointer';
+            excelImg.addEventListener('click', () => alert('替换此图片：将 src 属性改为您的 Excel 数据整理截图路径。'));
+        }
+    })();
+</script>
+</body>
+</html>
